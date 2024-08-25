@@ -4,7 +4,11 @@ const {listarServicos} = require('./listar/listarServicos');
 const {listarAgendamento} = require('./listar/listarAgendamento');
 const {cadastrarCliente} = require('./cadastro/cadastrarCliente');
 const {cadastrarServico} = require('./cadastro/cadastrarServico');
+const {cadastrarAgendamento} = require('./cadstro/cadastrarAgendamento');
+const {atualizarAgendmento} = require('./edicao/atualizarAgendamento');
 const {removerCliente} = require('./edicao/removerCliente');
+const {removerServico} = require('./edicao/removerServico');
+const {removerAgendmento} = require('./edicao/removerAgendamento');
 
 exibirMenu()
 function exibirMenu() {
@@ -39,6 +43,14 @@ switch(opcao) {
         cadastrarServico(nomeDoServico, preco);
         exibirMenu();
         break;
+    case "3":
+        const data = prompt("Insira a data: ");
+        const horario = prompt("Insira o horário: ");
+        const idDoCliente = prompt("Insira o ID do cliente: ");
+        const idDoServico = prompt("Insira o ID do serviço: ");
+        cadastrarAgendamento(data, horario, idDoCliente, idDoServico);
+        exibirMenu();
+        break;
     case '4':
         listarClientes();
         exibirMenu();
@@ -51,6 +63,11 @@ switch(opcao) {
         listarAgendamento();
         exibirMenu();
         break;
+    case "7":
+        listarAgendamento();
+        atualizarAgendamento();
+        exibirMenu();
+        break;
     case '8':
         listarClientes();
         id = prompt('Insira o número que deseja remover: ');
@@ -58,10 +75,20 @@ switch(opcao) {
         removerCliente(cliente)
         exibirMenu();
         break;
-    case '11':
+     case "9":
+        listarServicos();
+        removerServico();
+        exibirMenu();
+        break;
+     case "10":
+        listarAgendamento();
+        removerAgendamento();
+        exibirMenu();
+        break;
+     case '11':
         console.log('Até mais!');
         break;
-    default:
+     default:
         console.log('Opção inválida, tente novamente');
         exibirMenu();
         break;
